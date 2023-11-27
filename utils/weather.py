@@ -5,7 +5,7 @@ import time
 import requests
 
 
-def get_weather_data_for_location(latitude, longitude):
+def get_weather_data_for_location(latitude: str, longitude: str):
     """
     Get the average temperature for a location from the Open-Meteo API.
 
