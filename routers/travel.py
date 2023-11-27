@@ -29,10 +29,13 @@ async def should_travel(travel: Travel) -> None:
     source = travel.source
     destination = travel.destination
 
+    # Set the OpenAI API key
     os.environ["OPENAI_API_KEY"] = config["OPENAI_API_KEY"]
 
+    # Create the OpenAI chatbot
     llm = ChatOpenAI(temperature=0)
 
+    # Define the prompt
     prompt = PromptTemplate.from_template(
         """
         Write Exactly two SQl queries to get the temperature of the source and destination.
@@ -45,7 +48,10 @@ async def should_travel(travel: Travel) -> None:
         """
     )
 
+    # Create the Prompt Flow
     runnable = prompt | llm | StrOutputParser()
+
+    # Run the Prompt Flow
     result = runnable.invoke({"source": source, "destination": destination})
 
 
